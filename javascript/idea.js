@@ -16,7 +16,7 @@ searchForm.onsubmit = (ev) => {
             .then(response => response.json())
             .then(track => track.tracks.items) // get the list of songs
             .then(songs => {
-                //console.log(songs);
+                console.log(songs);
                 const songResults = document.getElementById("songTitles");
                 songs.forEach((song) => {
                     const songUL = document.createElement('li');
@@ -38,9 +38,34 @@ searchForm.onsubmit = (ev) => {
 // })
 
 
+let targetLang;
+
+
+let esButton = document.getElementById("Spanish");
+esButton.addEventListener("click", (ev) => {
+   targetLang = 'es'
+});
+let jpButton = document.getElementById("Japanese");
+jpButton.addEventListener("click", (ev) => {
+   targetLang = 'ja'
+});
+let arbButton = document.getElementById("Arabic");
+arbButton.addEventListener("click", (ev) => {
+   targetLang = 'ar'
+});
+let germButton = document.getElementById("German");
+germButton.addEventListener("click", (ev) => {
+   targetLang = 'de'
+});
+let korButton = document.getElementById("Korean");
+korButton.addEventListener("click", (ev) => {
+   targetLang = 'ko'
+});
+
+
+
 function translate(word) {
     var sourceLang = 'en';
-    var targetLang = 'es';
     let data
 
     var url = "https://translate.googleapis.com/translate_a/single?client=gtx&sl=" + sourceLang + "&tl=" + targetLang + "&dt=t&q=" + encodeURI(word);
