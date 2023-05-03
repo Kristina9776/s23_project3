@@ -16,9 +16,13 @@ searchForm.onsubmit = (ev) => {
             .then(response => response.json())
             .then(track => track.tracks.items) // get the list of songs
             .then(songs => {
-                console.log(songs);
+                //console.log(songs);
+                const songResults = document.getElementById("songTitles");
                 songs.forEach((song) => {
-                    console.log(song.name);
+                    const songUL = document.createElement('li');
+                    songUL.innerText = song.name;
+                    songResults.appendChild(songUL); // add each song to the DOM
+                    //console.log(song.name);
                 });
             });
         }
