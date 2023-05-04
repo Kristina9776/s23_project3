@@ -18,12 +18,31 @@ searchForm.onsubmit = (ev) => {
             .then(songs => {
                 console.log(songs);
                 const songResults = document.getElementById("songTitles");
+                var songArray = [];
                 songs.forEach((song) => {
                     const songUL = document.createElement('li');
+                    songUL.className = 'song';
                     songUL.innerText = song.name;
                     songResults.appendChild(songUL); // add each song to the DOM
                     //console.log(song.name);
+                    songArray.push(song.name);
                 });
+                songArray.sort();
+                let sortButton = document.createElement("button");
+                sortButton.innerText = "sort";
+                resultsUL.append(sortButton);
+                sortButton.onclick = (e) => {
+                    const songList = document.querySelectorAll('li.song');
+                    songList.forEach((s) => {
+                        s.remove();
+                    })
+                    songArray.forEach((s) => {
+                        const songLI = document.createElement('li');
+                        songLI.innerText = s;
+                        songResults.appendChild(songLI);
+                        //console.log(s);
+                    });
+                }
             });
         }
 
